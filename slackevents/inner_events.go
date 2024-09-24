@@ -807,10 +807,12 @@ type TeamRenameEvent struct {
 }
 
 type UserChangeEvent struct {
-	Type    string `json:"type"`
-	User    User   `json:"user"`
-	CacheTS int64  `json:"cache_ts"`
-	EventTS string `json:"event_ts"`
+	Type string `json:"type"`
+	// It's not clear why we had separate User type in thie file instead of existing one.
+	// Track https://github.com/slack-go/slack/issues/1324 for updates.
+	User    *slack.User `json:"user"`
+	CacheTS int64       `json:"cache_ts"`
+	EventTS string      `json:"event_ts"`
 }
 
 type AppDeletedEvent struct {
